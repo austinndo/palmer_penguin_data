@@ -1,3 +1,4 @@
+import dash
 import pandas as pd
 import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
@@ -12,12 +13,23 @@ app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.YETI])
 
 # Set layout
 app.layout = html.Div([
-    html.Div(children='Palmer Penguin Data'),
-    dash_table.DataTable(data=df.to_dict('records'), page_size=10)
+    html.H1('Palmer Penguin Data'),
+    html.Div([
+        html.Div(
+            dcc.Link(
+                f"{page['name']} - {page['path']}", href=page["relative_path"]
+            )
+        )
+        for page in dash.page_registry.values()
+    ]),
+    dash.page_container
 ])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
 
-# # View
+# View
 # print(df)
+
+# Table
+# dash_table.DataTable(data=df.to_dict('records'), page_size=10)
