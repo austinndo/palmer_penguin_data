@@ -7,8 +7,8 @@ import dash_bootstrap_components as dbc
 df = pd.read_csv('./data/penguins_size.csv')
 df = df.dropna()
 
-# Initialize dash app, add styling
-app = Dash(__name__, external_stylesheets=[dbc.themes.YETI])
+# Initialize dash app, add styling. use_pages=True to enable multipage
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.YETI])
 
 # Set layout
 app.layout = html.Div([
