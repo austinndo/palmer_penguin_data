@@ -1,14 +1,14 @@
 import pandas as pd
 import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import dash_bootstrap_components as dbc
 
-# Read the penguin size data
+# Read and clean the penguin size data
 df = pd.read_csv('./data/penguins_size.csv')
-# Remove rows with empty cells 'NaN'
 df = df.dropna()
 
-# Initialize dash app
-app = Dash(__name__)
+# Initialize dash app, add styling
+app = Dash(__name__, external_stylesheets=[dbc.themes.YETI])
 
 # Set layout
 app.layout = html.Div([
