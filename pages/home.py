@@ -1,7 +1,12 @@
 import dash
 import dash_bootstrap_components as dbc
+import pandas as pd
 from dash import html, dcc, dash_table
 from .nav import navbar
+
+# Read and clean the penguin size data
+df = pd.read_csv('data/penguins_size.csv')
+df = df.dropna()
 
 
 def title():
