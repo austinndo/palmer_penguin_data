@@ -1,6 +1,6 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import html, dcc
+from dash import html, dcc, dash_table
 from .nav import navbar
 
 
@@ -15,15 +15,9 @@ def description():
 # Set the path for home page
 dash.register_page(__name__, path='/', title=title, description=description)
 
-# layout = html.Div(children=[
-#     html.H1(children='This is the Palmer Penguin Home page'),
-#     html.Div(children=''' This is the Home page content '''),
-
-# ])
-
-
-def layout():
-    return dbc.Row(
-        [dbc.Col(navbar(), width=2), dbc.Col(
-            html.Div("Home Page"), width=10)]
-    )
+layout = html.Div(children=[
+    html.H1(children='This is the Home page'),
+    html.Div(children=''' This is the Home page content '''),
+    dbc.Row([dbc.Col(navbar(), width=2)]),
+    dash_table.DataTable(data=df.to_dict('records'), page_size=10)
+])
