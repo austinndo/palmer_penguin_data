@@ -4,6 +4,10 @@ import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
+##
+# Consider using dcc tabs to separate content instead of multipage!
+##
+
 # Read and clean the penguin size data
 df = pd.read_csv('./data/penguins_size.csv')
 df = df.dropna()
