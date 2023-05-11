@@ -4,12 +4,10 @@ import pandas as pd
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
-##
-# Consider using dcc tabs to separate content instead of multipage!
-##
-
-# Read and clean the penguin size data
-df = pd.read_csv('csv_files/penguins_size.csv')
+# Read and clean the penguin size data. dropna() to remove rows with empty cell(s)
+df = pd.read_csv('csv_files/penguins_lter.csv')
+df = df.drop(columns=['studyName', 'Region', 'Stage', 'Comments',
+             'Clutch Completion', 'Date Egg', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)'])
 df = df.dropna()
 
 # Initialize dash app, add styling. use_pages=True to enable multipage
@@ -31,9 +29,7 @@ app.layout = html.Div([
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-# View
-# print(df)
+    # print(df)
 
 # Table
 # dash_table.DataTable(data=df.to_dict('records'), page_size=10)
