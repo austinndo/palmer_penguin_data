@@ -4,11 +4,12 @@ import pandas as pd
 from dash import html, dcc, dash_table
 from .nav import navbar
 
-# Read and clean the penguin size data
+##### Read and clean the penguin size data  #####
 df = pd.read_csv('csv_files/penguins_lter.csv')
 df = df.drop(columns=['studyName', 'Region', 'Stage', 'Comments',
              'Clutch Completion', 'Date Egg', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)'])
 df = df.dropna()
+df = df.drop(df[df['Sex'] != 'MALE' OR 'FEMALE'].index)
 
 
 def title():
@@ -19,9 +20,10 @@ def description():
     return f'Data visualization of the Palmer Penguin data'
 
 
-# Set the path for home page
+##### Set the path for home page #####
 dash.register_page(__name__, path='/', title=title, description=description)
 
+##### Create the layout #####
 layout = html.Div(children=[
     dbc.Row([dbc.Col(navbar(), width=2)]),
     dash_table.DataTable(data=df.to_dict('records'), page_size=10)
