@@ -5,7 +5,7 @@ from dash import html, dcc, dash_table
 from .nav import navbar
 
 # Read and clean the penguin size data
-df = pd.read_csv('data/penguins_size.csv')
+df = pd.read_csv('csv_files/penguins_size.csv')
 df = df.dropna()
 
 
