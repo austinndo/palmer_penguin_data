@@ -13,7 +13,8 @@ df = df.drop(df[(df['Sex'] != 'MALE') & (df['Sex'] != 'FEMALE')].index)
 # Goes from 344 to 333 records
 
 ##### Initialize dash app, add styling. use_pages=True to enable multipage #####
-app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.YETI])
+app = Dash(__name__, use_pages=True, external_stylesheets=[
+           dbc.themes.YETI])
 
 ##### Set layout  #####
 app.layout = html.Div([
@@ -31,5 +32,5 @@ app.layout = html.Div([
 
 
 if __name__ == '__main__':
-    # app.run_server(debug=True)
-    print(df)
+    app.run_server(debug=True)
+    # print(df)

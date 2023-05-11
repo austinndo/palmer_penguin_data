@@ -26,5 +26,6 @@ dash.register_page(__name__, path='/', title=title, description=description)
 ##### Create the layout #####
 layout = html.Div(children=[
     dbc.Row([dbc.Col(navbar(), width=2)]),
-    dash_table.DataTable(data=df.to_dict('records'), page_size=10)
+    dash_table.DataTable(data=df.to_dict('records'),
+                         page_size=10, style_table={'overflowX': 'auto'})
 ])

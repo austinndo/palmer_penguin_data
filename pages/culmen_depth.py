@@ -52,8 +52,6 @@ layout = html.Div([
     Output('culmen_depth_graphs', 'children'),
     Input('culmen_depth_tabs', 'value')
 )
-# Trying to return a figure in the children of html.Div([ ]) seems to cause errors. "An object was provided as `children` instead of a component, string, or number... ""
-# use dcc.Graph() to specify the figure to render
 def render(tab):
     if tab == 'species':
         return html.Div([

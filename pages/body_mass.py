@@ -26,13 +26,13 @@ dash.register_page(__name__, path='/body_mass',
 
 #####  Create my figures  #####
 species_fig = px.box(
-    data_frame=df, x=df['Species'], y=df['Body Mass (g)'], title='Body Mass by Species')
+    data_frame=df, x=df['Species'], y=df['Body Mass (g)'], title='Body Mass by Species', color=df['Species'])
 
 island_fig = px.box(
-    data_frame=df, x=df['Island'], y=df['Body Mass (g)'], title='Body Mass by Island')
+    data_frame=df, x=df['Island'], y=df['Body Mass (g)'], title='Body Mass by Island', color=df['Island'])
 
 sex_fig = px.box(
-    data_frame=df, x=df['Sex'], y=df['Body Mass (g)'], title='Body Mass by Sex')
+    data_frame=df, x=df['Sex'], y=df['Body Mass (g)'], title='Body Mass by Sex', color=df['Sex'])
 
 
 ##### Set the layout #####
