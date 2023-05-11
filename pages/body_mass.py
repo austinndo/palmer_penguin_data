@@ -1,13 +1,15 @@
 import pandas as pd
 import dash
 import plotly_express as px
-from dash import callback, dcc, html, Input, Output, dash_table
+from dash import callback, dcc, html, Input, Output
 
-
+##### Read and clean the data #####
 df = pd.read_csv('csv_files/penguins_lter.csv')
 df = df.drop(columns=['studyName', 'Region', 'Stage', 'Comments',
              'Clutch Completion', 'Date Egg', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)'])
 df = df.dropna()
+
+##### Set up and register this Dash page #####
 
 
 def title():
@@ -21,13 +23,18 @@ def description():
 dash.register_page(__name__, path='/body_mass',
                    title=title, description=description)
 
-# species_fig = px.scatter(
-#     data_frame=df, x=[0, 1, 2, 3, 4, 5], y=[5, 12, 14, 6, 7, 8])
+#####  Create my figures  #####
+species_fig = px.box(
+    data_frame=df, x=df['Species'], y=df['Body Mass (g)'], title='Body Mass by Species')
 
-species_fig = px.scatter(
-    data_frame=df, x=df['Sample Number'], y=df['Body Mass (g)'])
+island_fig = px.box(
+    data_frame=df, x=df['Island'], y=df['Body Mass (g)'], title='Body Mass by Island')
 
-# Trying to return a figure in the children of html.Div([ ]) seems to cause errors. "An object was provided as `children` instead of a component, string, or number... ""
+sex_fig = px.box(
+    data_frame=df, x=df['Sex'], y=df['Body Mass (g)'], title='Body Mass by Sex')
+
+
+##### Set the layout #####
 layout = html.Div([
     dcc.Tabs(id='body_mass_tabs', value='species', children=[
         dcc.Tab(label='Species', value='species'),
@@ -37,24 +44,31 @@ layout = html.Div([
     html.Div(id='body_mass_graphs'),
 ])
 
+##### Interactivity with callbacks #####
+
 
 @callback(
     Output('body_mass_graphs', 'children'),
     Input('body_mass_tabs', 'value')
 )
+# Trying to return a figure in the children of html.Div([ ]) seems to cause errors. "An object was provided as `children` instead of a component, string, or number... ""
+# use dcc.Graph() to specify the figure to render
 def render(tab):
     if tab == 'species':
         return html.Div([
-            html.H3('Body Mass by Species'),
             dcc.Graph(
                 figure=species_fig
             )
         ])
     elif tab == 'island':
         return html.Div([
-            html.H3('Body Mass by Island'),
+            dcc.Graph(
+                figure=island_fig
+            )
         ])
     elif tab == 'sex':
         return html.Div([
-            html.H3('Body Mass by Sex'),
+            dcc.Graph(
+                figure=sex_fig
+            )
         ])
