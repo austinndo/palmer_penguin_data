@@ -1,8 +1,8 @@
-import dash
-from dash import Dash, html, dcc
-from dash.dependencies import Input, Output
 import pandas as pd
+import dash
 import plotly_express as px
+from dash import callback, dcc, html, Input, Output
+
 
 df = pd.read_csv('csv_files/penguins_size.csv')
 df = df.dropna()
@@ -29,10 +29,10 @@ layout = html.Div([
 ])
 
 
-# @Dash(__name__).callback(
-#     Output('body_mass_content', 'children'),
-#     Input('body_mass_tabs', 'value')
-# )
+@callback(
+    Output('body_mass_content', 'children'),
+    Input('body_mass_tabs', 'value')
+)
 def render(tab):
     if tab == 'species':
         return html.Div([
