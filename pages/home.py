@@ -9,7 +9,7 @@ df = pd.read_csv('csv_files/penguins_lter.csv')
 df = df.drop(columns=['studyName', 'Region', 'Stage', 'Comments',
              'Clutch Completion', 'Date Egg', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)'])
 df = df.dropna()
-df = df.drop(df[df['Sex'] != 'MALE' OR 'FEMALE'].index)
+df = df.drop(df[(df['Sex'] != 'MALE') & (df['Sex'] != 'FEMALE')].index)
 
 
 def title():

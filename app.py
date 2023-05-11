@@ -9,6 +9,8 @@ df = pd.read_csv('csv_files/penguins_lter.csv')
 df = df.drop(columns=['studyName', 'Region', 'Stage', 'Comments',
              'Clutch Completion', 'Date Egg', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)'])
 df = df.dropna()
+df = df.drop(df[(df['Sex'] != 'MALE') & (df['Sex'] != 'FEMALE')].index)
+# Goes from 344 to 333 records
 
 ##### Initialize dash app, add styling. use_pages=True to enable multipage #####
 app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.YETI])
@@ -29,5 +31,5 @@ app.layout = html.Div([
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
-    # print(df)
+    # app.run_server(debug=True)
+    print(df)
