@@ -1,8 +1,7 @@
 import dash
 import dash_bootstrap_components as dbc
 import pandas as pd
-from dash import html, dcc, dash_table
-from .nav import navbar
+from dash import html, dash_table
 
 ##### Read and clean the penguin size data  #####
 df = pd.read_csv('csv_files/penguins_lter.csv')
@@ -26,7 +25,6 @@ dash.register_page(__name__, name="Home", path='/',
 
 ##### Create the layout #####
 layout = html.Div(children=[
-    dbc.Row([dbc.Col(navbar(), width=2)]),
     dash_table.DataTable(data=df.to_dict('records'),
                          page_size=10, style_table={'overflowX': 'auto'})
 ])

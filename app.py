@@ -16,14 +16,30 @@ app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True, external
            dbc.themes.YETI])
 
 ##### Navbar #####
-nav = html.Div([
-    dbc.Nav(
-        dbc.NavLink(
-            f"{page['name']} - {page['path']}", href=page["relative_path"]
-        ), pills=True, justified=True
-    )
-    for page in dash.page_registry.values()
-])
+# nav = html.Div([
+#     dbc.Nav(
+#         dbc.NavItem(
+#             dbc.NavLink(
+#                 f"{page['name']} - {page['path']}", href=page["relative_path"]
+#             )
+#             for page in dash.page_registry.values()
+#         ), justified=True)
+# ])
+
+nav_links = [
+    dbc.NavItem(
+        dbc.NavLink("Data Table", href="/")),
+    dbc.NavItem(
+        dbc.NavLink("Body Mass", href="/body_mass")),
+    dbc.NavItem(
+        dbc.NavLink("Culmen Depth", href="/culmen_depth")),
+    dbc.NavItem(
+        dbc.NavLink("Culmen Length", href="/culmen_length")),
+    dbc.NavItem(
+        dbc.NavLink("Flipper Length", href="/flipper_length"))
+]
+
+nav = dbc.Nav(nav_links, pills=True, justified=True)
 
 ##### Set layout  #####
 app.layout = html.Div([
