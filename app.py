@@ -14,6 +14,7 @@ df = df.drop(df[(df['Sex'] != 'MALE') & (df['Sex'] != 'FEMALE')].index)
 ##### Initialize dash app, add styling. use_pages=True to enable multipage #####
 app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True, external_stylesheets=[
            dbc.themes.YETI])
+server = app.server
 
 ##### Navbar #####
 nav_links = [
