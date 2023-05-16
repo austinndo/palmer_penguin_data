@@ -21,7 +21,7 @@ def description():
     return f'Comparison of Palmer penguins culmen length'
 
 
-dash.register_page(__name__, path='/culmen_length',
+dash.register_page(__name__, name="Culmen Length", path='/culmen_length',
                    title=title, description=description)
 
 #####  Create my figures  #####

@@ -21,7 +21,7 @@ def description():
     return f'Comparison of Palmer penguins body mass in grams'
 
 
-dash.register_page(__name__, path='/body_mass',
+dash.register_page(__name__, name="Body Mass", path='/body_mass',
                    title=title, description=description)
 
 #####  Create my figures  #####

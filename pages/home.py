@@ -21,7 +21,8 @@ def description():
 
 
 ##### Set the path for home page #####
-dash.register_page(__name__, path='/', title=title, description=description)
+dash.register_page(__name__, name="Home", path='/',
+                   title=title, description=description, top_nav=True)
 
 ##### Create the layout #####
 layout = html.Div(children=[

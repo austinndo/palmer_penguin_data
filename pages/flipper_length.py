@@ -22,7 +22,7 @@ def description():
     return f'Comparison of Palmer penguins flipper length'
 
 
-dash.register_page(__name__, path='/flipper_length',
+dash.register_page(__name__, name="Flipper Length", path='/flipper_length',
                    title=title, description=description)
 
 #####  Create my figures  #####
