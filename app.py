@@ -1,6 +1,5 @@
 import dash
 import pandas as pd
-# import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
@@ -13,21 +12,24 @@ df = df.drop(df[(df['Sex'] != 'MALE') & (df['Sex'] != 'FEMALE')].index)
 # Goes from 344 to 333 records
 
 ##### Initialize dash app, add styling. use_pages=True to enable multipage #####
-app = Dash(__name__, use_pages=True, external_stylesheets=[
+app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True, external_stylesheets=[
            dbc.themes.YETI])
+
+##### Navbar #####
+nav = html.Div([
+    dbc.Nav(
+        dbc.NavLink(
+            f"{page['name']} - {page['path']}", href=page["relative_path"]
+        ), pills=True, justified=True
+    )
+    for page in dash.page_registry.values()
+])
 
 ##### Set layout  #####
 app.layout = html.Div([
     html.H1('Palmer Penguin Data'),
-    html.Div([
-        html.Div(
-            dcc.Link(
-                f"{page['name']} - {page['path']}", href=page["relative_path"]
-            )
-        )
-        for page in dash.page_registry.values()
-    ]),
-    dash.page_container
+    nav,
+    dash.page_container,
 ])
 
 
