@@ -16,16 +16,6 @@ app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True, external
            dbc.themes.YETI])
 
 ##### Navbar #####
-# nav = html.Div([
-#     dbc.Nav(
-#         dbc.NavItem(
-#             dbc.NavLink(
-#                 f"{page['name']} - {page['path']}", href=page["relative_path"]
-#             )
-#             for page in dash.page_registry.values()
-#         ), justified=True)
-# ])
-
 nav_links = [
     dbc.NavItem(
         dbc.NavLink("Data Table", href="/")),
